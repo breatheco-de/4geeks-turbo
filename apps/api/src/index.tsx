@@ -90,13 +90,13 @@ const route = app
   // })
   .get("/", (c) => {
     return c.html(
-      <>
+      `
         <h1>Simple example</h1>
         <p>The original code was commented</p>
         <p>
           <a href="http://localhost:3000/">Get back</a>
         </p>
-      </>
+      `
     );
   })
 
