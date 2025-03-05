@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   createItem,
@@ -6,14 +6,15 @@ import {
   updateItem,
   deleteItem,
   Item,
-} from '@4geeks/actions';
-import React from 'react';
+} from "@4geeks/actions";
+import Link from "next/link";
+import React from "react";
 
 export default function X() {
   const [items, setItems] = React.useState<Item[]>([]);
-  const [newItemName, setNewItemName] = React.useState<string>('');
+  const [newItemName, setNewItemName] = React.useState<string>("");
   const [updateItemId, setUpdateItemId] = React.useState<number | null>(null);
-  const [updateItemName, setUpdateItemName] = React.useState<string>('');
+  const [updateItemName, setUpdateItemName] = React.useState<string>("");
 
   React.useEffect(() => {
     async function fetchItems() {
@@ -26,18 +27,18 @@ export default function X() {
   const handleCreateItem = async () => {
     const newItem = await createItem(newItemName);
     setItems([...items, newItem]);
-    setNewItemName('');
+    setNewItemName("");
   };
 
   const handleUpdateItem = async () => {
-    if (updateItemId !== null && updateItemName.trim() !== '') {
+    if (updateItemId !== null && updateItemName.trim() !== "") {
       const updatedItem = await updateItem(updateItemId, updateItemName);
       if (updatedItem) {
         setItems(
           items.map((item) => (item.id === updateItemId ? updatedItem : item))
         );
         setUpdateItemId(null);
-        setUpdateItemName('');
+        setUpdateItemName("");
       }
     }
   };
@@ -52,9 +53,9 @@ export default function X() {
   return (
     <div className="p-4 max-w-md mx-auto">
       <div className="mt-4">
-        <a href="/" className="text-blue-500 hover:underline">
+        <Link href="/" className="text-blue-500 hover:underline">
           Back to Home
-        </a>
+        </Link>
       </div>
       <h1 className="text-2xl font-bold mb-4">Simple CRUD Item</h1>
       <div className="mb-4">

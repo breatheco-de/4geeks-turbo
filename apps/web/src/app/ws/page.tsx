@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { AppType } from "../../../../api/src";
-
+import Link from "next/link";
 export default function Index() {
   const [messages, setMessages] = useState<{ message: string; me: boolean }[]>(
     []
@@ -58,9 +57,9 @@ export default function Index() {
   return (
     <div className="p-4 max-w-md mx-auto">
       <div className="mt-4">
-        <a href="/" className="text-blue-500 hover:underline">
+        <Link href="/" className="text-blue-500 hover:underline">
           Back to Home
-        </a>
+        </Link>
       </div>
       <h1 className="text-2xl font-bold mb-4">WebSocket Demo</h1>
       <div className="mb-4">

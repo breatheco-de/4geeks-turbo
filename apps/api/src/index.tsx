@@ -5,7 +5,8 @@ import { z } from "zod";
 import { zValidator } from "@hono/zod-validator";
 import { hc } from "hono/client";
 import { cors } from "hono/cors";
-import type { FC } from "hono/jsx";
+// import type { FC } from "hono/jsx";
+// import { HtmlEscapedString } from "react";
 
 const { upgradeWebSocket, websocket } = createBunWebSocket();
 
@@ -32,50 +33,71 @@ type StuffItem = {
 
 let stuff: StuffItem[] = [];
 
-const Layout: FC = (props) => {
-  return (
-    <html>
-      <body>{props.children}</body>
-    </html>
-  );
-};
+// type LayoutProps = {
+//   children: any;
+// };
 
-const Top: FC<{ messages: string[] }> = (props: { messages: string[] }) => {
-  return (
-    <Layout>
-      <div style={{ textAlign: "center", padding: "20px" }}>
-        <h1
-          style={{ color: "#4A90E2", fontSize: "2.5em", marginBottom: "20px" }}
-        >
-          Hello Hono!
-        </h1>
-        <ul style={{ listStyleType: "none", padding: 0 }}>
-          {props.messages.map((message, index) => {
-            return (
-              <li
-                key={index}
-                style={{
-                  background: "#f0f0f0",
-                  margin: "10px auto",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  width: "200px",
-                }}
-              >
-                {message}!!
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </Layout>
-  );
-};
+// const Layout: FC<LayoutProps> = ({ children }) => {
+//   return (
+//     <html>
+//       <body>{children}</body>
+//     </html>
+//   );
+// };
+
+// const Top: FC<{ messages: string[] }> = (props: { messages: string[] }) => {
+//   return (
+//     <html>
+//       <body>
+//         <div style={{ textAlign: "center", padding: "20px" }}>
+//           <h1
+//             style={{
+//               color: "#4A90E2",
+//               fontSize: "2.5em",
+//               marginBottom: "20px",
+//             }}
+//           >
+//             Hello Hono!
+//           </h1>
+//           <ul style={{ listStyleType: "none", padding: 0 }}>
+//             {props.messages.map((message, index) => {
+//               return (
+//                 <li
+//                   key={index}
+//                   style={{
+//                     background: "#f0f0f0",
+//                     margin: "10px auto",
+//                     padding: "10px",
+//                     borderRadius: "5px",
+//                     width: "200px",
+//                   }}
+//                 >
+//                   {message}!!
+//                 </li>
+//               );
+//             })}
+//           </ul>
+//         </div>
+//       </body>
+//     </html>
+//   );
+// };
 
 const route = app
   .use("*", cors())
+  // .get("/", (c) => {
+  //   return c.html(<Top messages={["Hello", "World"]} />);
+  // })
   .get("/", (c) => {
-    return c.html(<Top messages={["Hello", "World"]} />);
+    return c.html(
+      <>
+        <h1>Simple example</h1>
+        <p>The original code was commented</p>
+        <p>
+          <a href="http://localhost:3000/">Get back</a>
+        </p>
+      </>
+    );
   })
 
   .get(

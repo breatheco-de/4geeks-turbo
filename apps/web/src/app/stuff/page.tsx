@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 
 import type { AppType } from "../../../../api/src";
 import { hc } from "hono/client";
+import Link from "next/link";
 
 const client = hc<AppType>("http://localhost:4000");
 
@@ -79,9 +80,9 @@ export default function X() {
   return (
     <div className="p-4 max-w-md mx-auto">
       <div className="mt-4">
-        <a href="/" className="text-blue-500 hover:underline">
+        <Link href="/" className="text-blue-500 hover:underline">
           Back to Home
-        </a>
+        </Link>
       </div>
       <h1 className="text-2xl font-bold mb-4">Simple CRUD Item</h1>
       <div className="mb-4">
