@@ -1,0 +1,13 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "i18n-ally.localesPaths": ["messages"],
+  "i18n-ally.keystyle": "nested",
+  "[mdx]": {
+    "editor.formatOnSave": false,
+    "editor.wordWrap": "on"
+  }
+}
