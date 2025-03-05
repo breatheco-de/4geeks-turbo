@@ -10,7 +10,7 @@ export default function Index() {
       <ul className="list-disc pl-5">
         <li className="mb-2">
           <a href="/item" className="text-blue-500 hover:underline">
-            Item CRUD
+            React Server Action CRUD
           </a>
         </li>
         <li className="mb-2">
@@ -18,17 +18,26 @@ export default function Index() {
             href="/fetch-simple-data"
             className="text-blue-500 hover:underline"
           >
-            Fetch Simple Data
+            React Server Action Fetch Simple Data
           </a>
         </li>
         <li className="mb-2">
           <a href="/ws" className="text-blue-500 hover:underline">
-            WebSocket Demo
+            Hono WebSocket Demo
           </a>
         </li>
         <li className="mb-2">
           <a href="/stuff" className="text-blue-500 hover:underline">
             Hono API Wrapper
+          </a>
+        </li>
+        <li className="mb-2">
+          <a
+            href="http://localhost:4000"
+            className="text-blue-500 hover:underline"
+            target="_blank"
+          >
+            Hono React Server Side Rendering
           </a>
         </li>
       </ul>

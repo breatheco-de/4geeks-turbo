@@ -1,16 +1,16 @@
 "use client";
 
-import {
-  createItem,
-  readItems,
-  updateItem,
-  deleteItem,
-  Item,
-} from "@4geeks/actions";
 import React, { useEffect } from "react";
 
-// import { hcWithType } from '../../../../api/src';
 import type { AppType } from "../../../../api/src";
+import { hc } from "hono/client";
+
+const client = hc<AppType>("http://localhost:4000");
+
+type Item = {
+  id: number;
+  name: string;
+};
 
 export default function X() {
   const [items, setItems] = React.useState<Item[]>([]);
@@ -20,50 +20,58 @@ export default function X() {
 
   useEffect(() => {
     async function fetchItems() {
-      const fetchedItems = await readItems();
-      setItems(fetchedItems);
+      const response = await client.stuff.$get();
+      const fetchedItems = await response.json();
+      const typedItems: Item[] = fetchedItems
+        .filter((item: { id?: number; name: string }) => item.id !== undefined)
+        .map((item) => ({
+          id: item.id!,
+          name: item.name,
+        }));
+      setItems(typedItems);
     }
     fetchItems();
   }, []);
 
-  // useEffect(() => {
-  //   async function fetchItems() {
-  //     console.log("fetchItems1");
-  //     const hc = await import("hono/client").then((m) => m.hc);
-  //     const client = hc<AppType>("http://localhost:4000");
-  //     if (client) {
-  //       // const hcWithType = await import('../../../../api/src').then((m) => m.hcWithType);
-  //       // const client = hcWithType('http://localhost:4000') as AppType;
-  //       const a = await client.stuff.$get();
-  //       console.log(a);
-  //       console.log("fetchItems2");
-  //     }
-  //   }
-  //   fetchItems();
-  // }, []);
-
   const handleCreateItem = async () => {
-    const newItem = await createItem(newItemName);
-    setItems([...items, newItem]);
+    const response = await client.stuff.$post({
+      json: { name: newItemName },
+    });
+    const newItem = await response.json();
+
+    if (newItem.data.id !== undefined) {
+      setItems([...items, { id: newItem.data.id, name: newItem.data.name }]);
+    } else {
+      console.error("New item ID is undefined");
+    }
+
     setNewItemName("");
   };
 
   const handleUpdateItem = async () => {
-    if (updateItemId !== null && updateItemName.trim() !== "") {
-      const updatedItem = await updateItem(updateItemId, updateItemName);
-      if (updatedItem) {
-        setItems(
-          items.map((item) => (item.id === updateItemId ? updatedItem : item))
-        );
-        setUpdateItemId(null);
-        setUpdateItemName("");
-      }
+    if (updateItemId) {
+      const response = await client.stuff[":id"].$put({
+        param: { id: updateItemId.toString() },
+        json: { name: updateItemName },
+      });
+      const updatedItem = await response.json();
+
+      setUpdateItemId(null);
+      setUpdateItemName("");
+      setItems(
+        items.map((v) =>
+          updateItemId === v.id ? { ...v, name: updatedItem.data.name } : v
+        )
+      );
     }
   };
 
   const handleDeleteItem = async (id: number) => {
-    const success = await deleteItem(id);
-    if (success) {
+    console.log("id", id, items);
+    const response = await client.stuff[":id"].$delete({
+      param: { id: id.toString() },
+    });
+    if (response.ok) {
       setItems(items.filter((item) => item.id !== id));
     }
   };
@@ -75,7 +83,6 @@ export default function X() {
           Back to Home
         </a>
       </div>
-      <p className="text-red-500 my-4">This demo is not working.</p>
       <h1 className="text-2xl font-bold mb-4">Simple CRUD Item</h1>
       <div className="mb-4">
         <input
