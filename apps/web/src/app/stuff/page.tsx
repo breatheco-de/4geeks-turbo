@@ -2,11 +2,10 @@
 
 import React, { useEffect } from "react";
 
-import type { AppType } from "../../../../api/src";
-import { hc } from "hono/client";
 import Link from "next/link";
+import { stuff } from "@4geeks/api";
 
-const client = hc<AppType>("http://localhost:4000");
+const client = stuff("http://localhost:4000");
 
 type Item = {
   id: number;

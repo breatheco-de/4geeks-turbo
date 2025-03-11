@@ -13,7 +13,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "next": "15.2.1",
-    "@4geeks/actions": "*"
+    "@4geeks/actions": "*",
+    "@4geeks/api": "*",
+    "@rigobot/api": "*"
   },
   "devDependencies": {
     "typescript": "^5",

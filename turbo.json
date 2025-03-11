@@ -19,7 +19,7 @@
     },
     "kill": {
       "cache": false,
-      "persistent": false
+      "persistent": true
     }
   }
 }

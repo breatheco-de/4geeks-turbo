@@ -10,7 +10,7 @@ export default function Index() {
   const [ws, setWs] = useState<WebSocket | null>(null);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:4000/ws");
+    const socket = new WebSocket("ws://localhost:4000/4geeks/v1/notify/ws");
     setWs(socket);
 
     socket.onmessage = (event) => {

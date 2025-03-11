@@ -1,8 +1,11 @@
 {
-  "name": "@repo/typescript-config",
+  "name": "@commons/typescript-config",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "scripts": {
+    "kill": "echo 'Add kill script here'"
+  },
   "publishConfig": {
     "access": "public"
   }

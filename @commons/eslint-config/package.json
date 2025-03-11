@@ -1,8 +1,11 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@commons/eslint-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
+  "scripts": {
+    "kill": "echo 'Add kill script here'"
+  },
   "exports": {
     "./base": "./base.js",
     "./next-js": "./next.js",
