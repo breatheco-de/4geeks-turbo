@@ -1,84 +1,92 @@
-# Turborepo starter
+# 4Geeks Turbo Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+This is a monorepo containing multiple packages and applications for both 4Geeks and RigoBot platforms.
 
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@commons/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@commons/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@commons/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## Project Structure
 
 ```
-cd my-turborepo
-pnpm build
+/
+├── apps/
+│   ├── web/          # Next.js web application
+│   ├── api/          # Hono API server
+│   └── docs/         # Documentation site
+├── packages/
+│   ├── @4geeks/
+│   │   ├── actions/  # Shared business logic and utilities
+│   │   ├── api/      # API client and types
+│   │   └── ui/       # React component library
+│   ├── @rigobot/
+│   │   ├── actions/  # RigoBot specific business logic
+│   │   ├── api/      # RigoBot API client
+│   │   └── ui/       # RigoBot UI components
+│   └── @commons/
+│       ├── eslint-config/     # Shared ESLint configuration
+│       ├── typescript-config/ # Shared TypeScript configuration
+│       └── ui/               # Common UI components
+└── package.json
 ```
 
-### Develop
+## Getting Started
 
-To develop all apps and packages, run the following command:
+### Prerequisites
 
-```
-cd my-turborepo
-pnpm dev
-```
+- Node.js 18 or higher
+- Bun package manager
 
-### Remote Caching
+### Installation
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+```bash
+# Install dependencies
+bun install
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+# Build all packages
+bun run build
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Development
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```bash
+# Start development servers
+bun run dev
 
+# Kill all running processes
+bun run kill
 ```
-npx turbo link
-```
 
-## Useful Links
+### Available Scripts
 
-Learn more about the power of Turborepo:
+- `build`: Build all packages and applications
+- `dev`: Start development servers
+- `lint`: Run linting across all packages
+- `check-types`: Run type checking
+- `kill`: Kill all running development servers
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## Package Namespaces
+
+### @4geeks
+
+- `@4geeks/actions`: Shared actions and utilities
+- `@4geeks/api`: API client and types
+- `@4geeks/ui`: UI components and styles
+
+### @rigobot
+
+- `@rigobot/actions`: RigoBot specific actions
+- `@rigobot/api`: RigoBot API client
+- `@rigobot/ui`: RigoBot UI components
+
+### @commons
+
+- `@commons/ui`: Shared UI components and utilities
+- `@commons/eslint-config`: Shared ESLint configurations
+- `@commons/typescript-config`: Shared TypeScript configurations
+
+## Development Notes
+
+- All packages are private and for internal use only
+- The monorepo uses Turborepo for build orchestration
+- Use `--concurrency=13` flag with turbo commands if needed
+
+## License
+
+Private - No License
