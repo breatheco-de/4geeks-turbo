@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "kill": "fuser -k 3000/tcp"
+    "kill": "fuser -k 3000/tcp || true"
   },
   "dependencies": {
     "react": "^19.0.0",

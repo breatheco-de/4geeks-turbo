@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "kill": "fuser -k 3001/tcp"
+    "kill": "fuser -k 3001/tcp || true"
   },
   "dependencies": {
     "@commons/ui": "*",

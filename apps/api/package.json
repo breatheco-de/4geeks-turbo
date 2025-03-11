@@ -2,7 +2,7 @@
   "name": "api",
   "scripts": {
     "dev": "bun run --hot src/index.tsx",
-    "kill": "fuser -k 4000/tcp"
+    "kill": "fuser -k 4000/tcp || true"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.3",

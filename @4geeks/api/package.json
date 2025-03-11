@@ -1,7 +1,7 @@
 {
   "name": "@4geeks/api",
   "scripts": {
-    "dev": "bun run --hot src/index.tsx",
+    "dev": "echo 'Add dev script here'",
     "kill": "echo 'Add kill script here'"
   },
   "dependencies": {
